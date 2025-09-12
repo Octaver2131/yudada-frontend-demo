@@ -16,13 +16,16 @@
             <div class="title">1111</div>
           </div>
         </a-menu-item>
-        <a-menu-item v-for="item in routes" :key="item.path">
+        <a-menu-item v-for="item in visibleRoutes" :key="item.path">
           {{ item.name }}
         </a-menu-item>
       </a-menu>
     </a-col>
     <a-col flex="100px">
-      <div>
+      <div v-if="loginUserStore.loginUser.id">
+        {{ loginUserStore.loginUser.userName ?? 空白 }}
+      </div>
+      <div v-else>
         <a-button type="primary" href="/user/login">Login</a-button>
       </div>
     </a-col>
@@ -32,7 +35,11 @@
 <script setup lang="ts">
 import { routes } from "@/router/routes";
 import { useRouter } from "vue-router";
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { useLoginUserStore } from "@/store/userStore";
+import checkAccess from "@/access/checkAccess";
+
+const loginUserStore = useLoginUserStore();
 
 const router = useRouter();
 
@@ -41,7 +48,21 @@ const selectedKeys = ref(["/"]);
 // 路由跳转时，自动更新选中的菜单项
 router.afterEach((to, from, next) => {
   selectedKeys.value = [to.path];
-})
+});
+
+// 展示在菜单栏的路由数组
+const visibleRoutes = computed(() => {
+  return routes.filter((item) => {
+    if (item.meta?.hideInMenu) {
+      return false;
+    }
+    // 根据权限过滤菜单
+    if (!checkAccess(loginUserStore.loginUser, item.meta?.access as string)) {
+      return false;
+    }
+    return true;
+  });
+});
 
 // 点击菜单跳转到对应页面
 const doMenuClick = (key: string) => {
@@ -60,8 +81,8 @@ const doMenuClick = (key: string) => {
 }
 
 .title {
-  color: black;
   margin-left: 16px;
+  color: black;
 }
 
 .logo {
