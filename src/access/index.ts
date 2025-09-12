@@ -6,7 +6,13 @@ import { useLoginUserStore } from "@/store/userStore";
 router.beforeEach(async (to, from, next) => {
   // 获取当前登入用户
   const loginUserStore = useLoginUserStore();
-  const loginUser = loginUserStore.loginUser;
+  let loginUser = loginUserStore.loginUser;
+  // 如果之前没有尝试过获取用户登陆信息，才自动登录
+  if (!loginUser || !loginUser.userRole) {
+    // 加 await 是为了确保获取用户信息成功，再执行后续操作
+    await loginUserStore.fetchLoginUser();
+    loginUser = loginUserStore.loginUser;
+  }
   // 当前页面需要的权限
   const needAccess = (to.meta?.access as string) ?? AccessEnum.NOT_LOGIN;
   // 要跳转的页面必须登录
