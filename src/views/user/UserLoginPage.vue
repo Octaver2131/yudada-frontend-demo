@@ -18,9 +18,19 @@
         />
       </a-form-item>
       <a-form-item>
-        <a-button type="primary" html-type="submit" style="width: 120px">
-          登录
-        </a-button>
+        <div
+          style="
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between;
+          "
+        >
+          <a-button type="primary" html-type="submit" style="width: 120px">
+            登录
+          </a-button>
+          <a-link href="/user/register">新用户注册</a-link>
+        </div>
       </a-form-item>
     </a-form>
   </div>
