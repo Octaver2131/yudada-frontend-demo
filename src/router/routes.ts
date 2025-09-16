@@ -1,16 +1,21 @@
 import ACCESS_ENUM from "@/access/accessEnum";
 import UserLayout from "@/layouts/UserLayout.vue";
-import HomeView from "@/views/HomeView.vue";
+import AdminAppPage from "@/views/admin/AdminAppPage.vue";
+import AdminQuestionPage from "@/views/admin/AdminQuestionPage.vue";
+import AdminScoringResultPage from "@/views/admin/AdminScoringResultPage.vue";
+import AdminUserAnswerPage from "@/views/admin/AdminUserAnswerPage.vue";
+import AdminUserPage from "@/views/admin/AdminUserPage.vue";
+import HomePage from "@/views/HomePage.vue";
 import noAuthPage from "@/views/NoAuthPage.vue";
-import UserLoginPage from "@/views/UserLoginPage.vue";
-import UserRegisterPage from "@/views/UserRegisterPage.vue";
+import UserLoginPage from "@/views/user/UserLoginPage.vue";
+import UserRegisterPage from "@/views/user/UserRegisterPage.vue";
 import { RouteRecordRaw } from "vue-router";
 
 export const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
+    component: HomePage,
   },
   {
     path: "/noAuth",
@@ -21,9 +26,41 @@ export const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: "/admin",
-    name: "管理页面",
-    component: HomeView,
+    path: "/admin/user",
+    name: "用户管理",
+    component: AdminUserPage,
+    meta: {
+      access: ACCESS_ENUM.ADMIN,
+    },
+  },
+  {
+    path: "/admin/app",
+    name: "应用管理",
+    component: AdminAppPage,
+    meta: {
+      access: ACCESS_ENUM.ADMIN,
+    },
+  },
+  {
+    path: "/admin/question",
+    name: "题目管理",
+    component: AdminQuestionPage,
+    meta: {
+      access: ACCESS_ENUM.ADMIN,
+    },
+  },
+  {
+    path: "/admin/scoring_result",
+    name: "评分管理",
+    component: AdminScoringResultPage,
+    meta: {
+      access: ACCESS_ENUM.ADMIN,
+    },
+  },
+  {
+    path: "/admin/user_answer",
+    name: "回答管理",
+    component: AdminUserAnswerPage,
     meta: {
       access: ACCESS_ENUM.ADMIN,
     },
@@ -31,7 +68,7 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path: "/hide",
     name: "隐藏页面",
-    component: HomeView,
+    component: HomePage,
     meta: {
       hideInMenu: true,
     },
