@@ -5,6 +5,9 @@ import AdminQuestionPage from "@/views/admin/AdminQuestionPage.vue";
 import AdminScoringResultPage from "@/views/admin/AdminScoringResultPage.vue";
 import AdminUserAnswerPage from "@/views/admin/AdminUserAnswerPage.vue";
 import AdminUserPage from "@/views/admin/AdminUserPage.vue";
+import AddAppPage from "@/views/app/AddAppPage.vue";
+import AddQuestionPage from "@/views/app/AddQuestionPage.vue";
+import AddScoringResultPage from "@/views/app/AddScoringResultPage.vue";
 import AppDetailPage from "@/views/app/AppDetailPage.vue";
 import HomePage from "@/views/HomePage.vue";
 import noAuthPage from "@/views/NoAuthPage.vue";
@@ -17,6 +20,38 @@ export const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "主页",
     component: HomePage,
+  },
+  {
+    path: "/add/app",
+    name: "创建应用",
+    component: AddAppPage,
+  },
+  {
+    path: "/add/app/:id",
+    name: "修改应用",
+    props: true,
+    component: AddAppPage,
+    meta: {
+      hideInMenu: true,
+    },
+  },
+  {
+    path: "/add/question/:appId",
+    name: "创建题目",
+    component: AddQuestionPage,
+    props: true,
+    meta: {
+      hideInMenu: true,
+    },
+  },
+  {
+    path: "/add/scoring_result/:appId",
+    name: "创建评分",
+    component: AddScoringResultPage,
+    props: true,
+    meta: {
+      hideInMenu: true,
+    },
   },
   {
     path: "/app/detail/:id",
