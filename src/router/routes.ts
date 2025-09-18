@@ -1,19 +1,22 @@
 import ACCESS_ENUM from "@/access/accessEnum";
 import UserLayout from "@/layouts/UserLayout.vue";
+import AddAppPage from "@/views/add/AddAppPage.vue";
+import AddQuestionPage from "@/views/add/AddQuestionPage.vue";
+import AddScoringResultPage from "@/views/add/AddScoringResultPage.vue";
 import AdminAppPage from "@/views/admin/AdminAppPage.vue";
 import AdminQuestionPage from "@/views/admin/AdminQuestionPage.vue";
 import AdminScoringResultPage from "@/views/admin/AdminScoringResultPage.vue";
 import AdminUserAnswerPage from "@/views/admin/AdminUserAnswerPage.vue";
 import AdminUserPage from "@/views/admin/AdminUserPage.vue";
+import AnswerResultPage from "@/views/answer/AnswerResultPage.vue";
+import DoAnswerPage from "@/views/answer/DoAnswerPage.vue";
+import MyAnswerPage from "@/views/answer/MyAnswerPage.vue";
 import AppDetailPage from "@/views/app/AppDetailPage.vue";
 import HomePage from "@/views/HomePage.vue";
 import noAuthPage from "@/views/NoAuthPage.vue";
 import UserLoginPage from "@/views/user/UserLoginPage.vue";
 import UserRegisterPage from "@/views/user/UserRegisterPage.vue";
 import { RouteRecordRaw } from "vue-router";
-import AddAppPage from "@/views/add/AddAppPage.vue";
-import AddQuestionPage from "@/views/add/AddQuestionPage.vue";
-import AddScoringResultPage from "@/views/add/AddScoringResultPage.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -68,6 +71,34 @@ export const routes: Array<RouteRecordRaw> = [
     component: noAuthPage,
     meta: {
       hideInMenu: true,
+    },
+  },
+  {
+    path: "/answer/do/:appId",
+    name: "答题",
+    component: DoAnswerPage,
+    props: true,
+    meta: {
+      hideInMenu: true,
+      access: ACCESS_ENUM.USER,
+    },
+  },
+  {
+    component: AnswerResultPage,
+    meta: {
+      hideInMenu: true,
+      access: ACCESS_ENUM.USER,
+    },
+    name: "答题结果",
+    path: "/answer/result/:id",
+    props: true,
+  },
+  {
+    path: "/answer/my",
+    name: "我的答题",
+    component: MyAnswerPage,
+    meta: {
+      access: ACCESS_ENUM.USER,
     },
   },
   {
