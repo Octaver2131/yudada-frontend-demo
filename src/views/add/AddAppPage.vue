@@ -1,6 +1,6 @@
 <template>
   <div id="addAppPage">
-    <h2 style="margin-bottom: 32px" >创建应用</h2>
+    <h2 style="margin-bottom: 32px">创建应用</h2>
     <a-form
       :model="form"
       :style="{ width: '480px' }"
