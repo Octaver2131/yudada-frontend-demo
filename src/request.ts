@@ -1,3 +1,4 @@
+import { Message } from "@arco-design/web-vue";
 import axios from "axios";
 
 const myAxios = axios.create({
@@ -33,6 +34,7 @@ myAxios.interceptors.response.use(
         !response.request.responseURL.includes("user/get/login") &&
         !window.location.pathname.includes("/user/login")
       ) {
+        Message.warning("请先登录");
         window.location.href = `/user/login?redirect=${window.location.href}`;
       }
     }
