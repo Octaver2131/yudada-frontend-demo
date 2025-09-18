@@ -29,13 +29,16 @@ import GlobalHeader from "@/components/GlobalHeader.vue";
 }
 
 #basicLayout .content {
-  background: linear-gradient(to right, #fefefe, #fff);
-  margin-bottom: 28px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 28px;
   padding: 20px;
+  background: linear-gradient(to right, #fefefe, #fff);
 }
 .footer {
-  background: #efefef;
   padding: 16px;
   text-align: center;
+  background: #efefef;
 }
 </style>
