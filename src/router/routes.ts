@@ -5,6 +5,7 @@ import AdminQuestionPage from "@/views/admin/AdminQuestionPage.vue";
 import AdminScoringResultPage from "@/views/admin/AdminScoringResultPage.vue";
 import AdminUserAnswerPage from "@/views/admin/AdminUserAnswerPage.vue";
 import AdminUserPage from "@/views/admin/AdminUserPage.vue";
+import AppDetailPage from "@/views/app/AppDetailPage.vue";
 import HomePage from "@/views/HomePage.vue";
 import noAuthPage from "@/views/NoAuthPage.vue";
 import UserLoginPage from "@/views/user/UserLoginPage.vue";
@@ -14,8 +15,17 @@ import { RouteRecordRaw } from "vue-router";
 export const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "home",
+    name: "主页",
     component: HomePage,
+  },
+  {
+    path: "/app/detail/:id",
+    name: "应用详情页",
+    props: true,
+    component: AppDetailPage,
+    meta: {
+      hideInMenu: true,
+    },
   },
   {
     path: "/noAuth",
@@ -92,14 +102,5 @@ export const routes: Array<RouteRecordRaw> = [
     meta: {
       hideInMenu: true,
     },
-  },
-  {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
 ];
