@@ -5,15 +5,15 @@ import AdminQuestionPage from "@/views/admin/AdminQuestionPage.vue";
 import AdminScoringResultPage from "@/views/admin/AdminScoringResultPage.vue";
 import AdminUserAnswerPage from "@/views/admin/AdminUserAnswerPage.vue";
 import AdminUserPage from "@/views/admin/AdminUserPage.vue";
-import AddAppPage from "@/views/app/AddAppPage.vue";
-import AddQuestionPage from "@/views/app/AddQuestionPage.vue";
-import AddScoringResultPage from "@/views/app/AddScoringResultPage.vue";
 import AppDetailPage from "@/views/app/AppDetailPage.vue";
 import HomePage from "@/views/HomePage.vue";
 import noAuthPage from "@/views/NoAuthPage.vue";
 import UserLoginPage from "@/views/user/UserLoginPage.vue";
 import UserRegisterPage from "@/views/user/UserRegisterPage.vue";
 import { RouteRecordRaw } from "vue-router";
+import AddAppPage from "@/views/add/AddAppPage.vue";
+import AddQuestionPage from "@/views/add/AddQuestionPage.vue";
+import AddScoringResultPage from "@/views/add/AddScoringResultPage.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
