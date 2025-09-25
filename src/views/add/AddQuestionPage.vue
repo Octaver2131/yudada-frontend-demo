@@ -18,6 +18,9 @@
           <AiGenerateQuestionDrawer
             :appId="appId"
             :onSuccess="onAiGenerateSuccess"
+            :onSSESuccess="onAiGenerateSuccessSSE"
+            :onSSEClose="onSSEClose"
+            :onSSStart="onSSEStart"
           />
         </a-space>
         <!--        遍历每道题目-->
@@ -241,5 +244,27 @@ const handleSubmit = async () => {
 const onAiGenerateSuccess = (result: API.QuestionContentDTO[]) => {
   message.success(`AI 生成题目成功，生成 ${result.length} 道题目`);
   questionContent.value = [...questionContent.value, ...result];
+};
+
+/**
+ * AI 生成题目成功后执行（SSE）
+ * @param question
+ */
+const onAiGenerateSuccessSSE = (result: API.QuestionContentDTO) => {
+  questionContent.value = [...questionContent.value, result];
+};
+
+/**
+ * SSE 开始生成
+ */
+const onSSEStart = (event: any) => {
+  message.success("AI 正在生成题目，请稍等...");
+};
+
+/**
+ * SSE 生成完毕
+ */
+const onSSEClose = (event: any) => {
+  message.success("生成完毕")
 };
 </script>
